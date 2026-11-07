@@ -44,6 +44,15 @@ public class Hamming {
         return  s;
     }
 
+    static String correct(String word, int s){
+        if (s == 0){
+            return word;
+        }
+        char[] bits = word.toCharArray();
+        bits[s-1] = (bits[s-1] == '0') ? '1' : '0'; //if bits[s-1] equals zero, assign 1, otherwise assign 0
+        return new String(bits);
+    }
+
     static String decode(String codeword){
         StringBuilder sb = new StringBuilder();
         for (int p: DATA_POS){
