@@ -43,4 +43,12 @@ public class Hamming {
         }
         return  s;
     }
+
+    static String decode(String codeword){
+        StringBuilder sb = new StringBuilder();
+        for (int p: DATA_POS){
+            sb.append(codeword.charAt(p-1));
+        }
+        return sb.toString();
+    }
 }
