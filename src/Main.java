@@ -42,7 +42,7 @@ public class Main {
         System.out.println("Received (15): " + received);
         System.out.println("Syndrome: " + synBits + " (decimal = " + s + ")");
         if (s !=0){
-            System.out.println("Single-bit error detected at position" + s + " (1 = leftmost); corrected.");
+            System.out.println("Single-bit error detected at position " + s + " (starting at 1 from left to right); corrected.");
         } else {
             System.out.println("No error detected.");
         }
