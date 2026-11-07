@@ -11,4 +11,36 @@ public class Hamming {
                     length + " binary digits, got \"" + s + "\"");
         }
     }
+
+    static String encode(String data){
+        validate(data, K, "Data");
+        int[] codeword = new int[N+1]; //not using index 0
+        for (int i = 0; i < K; i++){
+            codeword[DATA_POS[i]] = data.charAt(i) - '0'; // -'0' converts characters '0' and '1' to their numerical values
+        }
+        for (int p: PARITY_POS){
+            int sum = 0;
+            for (int i = 1; i <= N; i++){
+                if ((i & p) != 0 && i !=p){
+                    sum += codeword[i];
+                }
+            codeword[p] = sum % 2; //will give a 0 or 1
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= N; i++){
+            sb.append(codeword[i]);
+        }
+        return sb.toString(); //converts codeword to a String
+    }
+
+    static int syndrome (String word){
+        int s = 0;
+        for (int i = 1; i <= word.length(); i++){
+            if (word.charAt(i-1) == '1'){
+                s ^= i;
+            }
+        }
+        return  s;
+    }
 }
